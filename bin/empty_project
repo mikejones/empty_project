@@ -22,9 +22,7 @@ empty_project_root = File.expand_path(File.join(File.dirname(__FILE__), ".."))
 
 mkdir_p(project_root)
 
-%w(config lib public views).each do |folder|
+%w(config lib public views config.ru).each do |folder|
   cp_r(File.join(empty_project_root, folder), File.join(project_root, folder))
 end
-
-
 
