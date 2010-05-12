@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby -wKU
+
+if ARGV.length == 0
+  puts "usage: create_project project-name"
+  exit 0
+end
+
+require "fileutils"
+
+def cp_r(from, to)
+  puts "Creating #{to}"
+  FileUtils.cp_r(from, to)
+end
+def mkdir_p(dir_name)
+  puts "Creating #{dir_name}"
+  FileUtils.mkdir_p(dir_name)
+end
+
+project_name = ARGV[0]
+project_root = File.join(Dir.pwd, project_name)
+empty_project_root = File.expand_path(File.join(File.dirname(__FILE__), ".."))
+
+mkdir_p(project_root)
+
+%w(config lib public views).each do |folder|
+  cp_r(File.join(empty_project_root, folder), File.join(project_root, folder))
+end
+
+
+

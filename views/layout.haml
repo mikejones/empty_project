@@ -1,0 +1,61 @@
+!!! XML
+!!! Strict
+%html{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "en", :lang => "en"}
+  %head
+    %title Empty Project 
+    %link(rel="Stylesheet" type="text/css" charset="utf-8" media="all" href="/stylesheets/reset.css")
+    %link(rel="Stylesheet" type="text/css" charset="utf-8" media="all" href="/stylesheets/text.css")
+    %link(rel="Stylesheet" type="text/css" charset="utf-8" media="all" href="/stylesheets/960.css")
+    %link(rel="Stylesheet" type="text/css" charset="utf-8" media="all" href="/stylesheets/base.css")
+    %script(type="text/javascript" src="/javascripts/jquery-1.4.2.min.js")
+    %script(type="text/javascript" src="/javascripts/app.js")
+    
+  %body
+    #header.container_12
+      .grid_12
+        %h1 Here is your new empty project!
+
+    #content.container_12
+      .grid_8= yield
+      #aside.grid_4
+        %ul
+          %li Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          %li Vestibulum in turpis magna, pellentesque sollicitudin metus.
+          %li Quisque cursus arcu ac magna ultrices placerat.
+          %li Duis id ante quis diam laoreet sodales vitae non nulla.
+          %li Mauris aliquam nulla nec enim faucibus tristique.
+          %li Vestibulum sit amet sem et nisl lobortis venenatis quis vitae lacus.
+        %ul 
+          %li Cras dictum neque at odio pulvinar at venenatis sapien varius.
+          %li Cras sit amet tortor a arcu feugiat feugiat ut id ante.
+          %li Morbi vel dui a neque ultricies gravida.
+        %ul 
+          %li Phasellus malesuada luctus lorem, ut placerat felis ornare eu.
+          %li Morbi blandit interdum tellus, cursus feugiat dui semper at.
+          %li Duis non mauris ante, eu sagittis enim.
+          %li Ut sit amet lacus justo, pulvinar lacinia enim.
+          %li Proin et urna arcu, non aliquam dui.
+    
+    #footer.container_12
+      .grid_4
+        %ul
+          %li Nulla at nisl orci, ac auctor urna.
+          %li Duis fringilla turpis et metus fermentum sit amet iaculis ante facilisis.
+          %li Donec vitae augue volutpat dolor bibendum venenatis sed eget arcu.
+      .grid_4
+        %ul
+          %li Nulla at nisl orci, ac auctor urna.
+          %li Duis fringilla turpis et metus fermentum sit amet iaculis ante facilisis.
+          %li Donec vitae augue volutpat dolor bibendum venenatis sed eget arcu.
+      .grid_4
+        %ul
+          %li Nulla at nisl orci, ac auctor urna.
+          %li Duis fringilla turpis et metus fermentum sit amet iaculis ante facilisis.
+          %li Donec vitae augue volutpat dolor bibendum venenatis sed eget arcu.
+    
+    :javascript
+      jQuery(function($) {
+        #{ yield_content(:javascript) if content_for? :javascript }  
+      });
+
+

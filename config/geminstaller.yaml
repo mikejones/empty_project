@@ -1,0 +1,7 @@
+gems:
+  - name: sinatra
+    install_options: --no-ri --no-rdoc
+    version: '>= 1.0'
+  - name: haml
+    install_options: --no-ri --no-rdoc
+ 
