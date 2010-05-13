@@ -26,3 +26,6 @@ mkdir_p(project_root)
   cp_r(File.join(empty_project_root, folder), File.join(project_root, folder))
 end
 
+mkdir_p(File.join(project_root, "bin"))
+cp_r(File.join(empty_project_root, "bin", "term"), File.join(project_root, "bin", "term"))
+

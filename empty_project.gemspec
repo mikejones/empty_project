@@ -11,6 +11,7 @@ Gem::Specification.new do |s|
   s.files = %w(
     Rakefile
     bin/empty_project
+    bin/term
     config/geminstaller.yaml
     config.ru
     lib/app.rb
