@@ -10,9 +10,12 @@ Gem::Specification.new do |s|
   s.executables = ["empty_project"]
   s.files = %w(
     Rakefile
+    Capfile
     bin/empty_project
     bin/term
+    config/deploy.rb
     config/geminstaller.yaml
+    config/nginx.conf
     config.ru
     lib/app.rb
     lib/helpers/content_for.rb

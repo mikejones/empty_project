@@ -13,6 +13,11 @@ configure do
   set :haml, { :attr_wrapper => '"' }
 end
 
+configure :development do
+  require 'sinatra/reloader'
+  Sinatra::Application.also_reload "lib/**/*.rb"
+end
+
 get '/' do
   haml :index
 end
