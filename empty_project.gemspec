@@ -11,10 +11,10 @@ Gem::Specification.new do |s|
   s.files = %w(
     Rakefile
     Capfile
+    Gemfile
     bin/empty_project
     bin/term
     config/deploy.rb
-    config/geminstaller.yaml
     config/nginx.conf
     config.ru
     lib/app.rb

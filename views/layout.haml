@@ -1,61 +1,39 @@
-!!! XML
-!!! Strict
-%html{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "en", :lang => "en"}
+!!! 5
+/ paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
+/[if lt IE 7 ] <html lang="en" class="no-js ie6">
+/[if IE 7 ] <html lang="en" class="no-js ie7">
+/[if IE 8 ] <html lang="en" class="no-js ie8">
+/[if IE 9 ] <html lang="en" class="no-js ie9">
+/ [if (gt IE 9)|!(IE)]><!
+%html.no-js{:lang => "en"}
+  / <![endif]
   %head
-    %title Empty Project 
-    %link(rel="Stylesheet" type="text/css" charset="utf-8" media="all" href="/stylesheets/reset.css")
-    %link(rel="Stylesheet" type="text/css" charset="utf-8" media="all" href="/stylesheets/text.css")
-    %link(rel="Stylesheet" type="text/css" charset="utf-8" media="all" href="/stylesheets/960.css")
-    %link(rel="Stylesheet" type="text/css" charset="utf-8" media="all" href="/stylesheets/base.css")
-    %script(type="text/javascript" src="/javascripts/jquery-1.4.2.min.js")
-    %script(type="text/javascript" src="/javascripts/app.js")
-    
+    %meta{:charset => "utf-8"}/
+    / Always force latest IE rendering engine (even in intranet)
+    %meta{:content => "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible"}/
+    %title ADD TITLE
+    %meta{:content => "width=device-width; initial-scale=1.0", :name => "viewport"}/
+    %link{:href => "/stylesheets/style.css?v=1", :rel => "stylesheet"}/
+    %script{:src => "/javascripts/modernizr-1.5.min.js"}
   %body
-    #header.container_12
-      .grid_12
-        %h1 A New Empty Project!
-
-    #content.container_12
-      .grid_8= yield
-      #aside.grid_4
-        %ul
-          %li Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          %li Vestibulum in turpis magna, pellentesque sollicitudin metus.
-          %li Quisque cursus arcu ac magna ultrices placerat.
-          %li Duis id ante quis diam laoreet sodales vitae non nulla.
-          %li Mauris aliquam nulla nec enim faucibus tristique.
-          %li Vestibulum sit amet sem et nisl lobortis venenatis quis vitae lacus.
-        %ul 
-          %li Cras dictum neque at odio pulvinar at venenatis sapien varius.
-          %li Cras sit amet tortor a arcu feugiat feugiat ut id ante.
-          %li Morbi vel dui a neque ultricies gravida.
-        %ul 
-          %li Phasellus malesuada luctus lorem, ut placerat felis ornare eu.
-          %li Morbi blandit interdum tellus, cursus feugiat dui semper at.
-          %li Duis non mauris ante, eu sagittis enim.
-          %li Ut sit amet lacus justo, pulvinar lacinia enim.
-          %li Proin et urna arcu, non aliquam dui.
+    #container
+      %header
+      #main= yield
+      %footer
+    %script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"}
     
-    #footer.container_12
-      .grid_4
-        %ul
-          %li Nulla at nisl orci, ac auctor urna.
-          %li Duis fringilla turpis et metus fermentum sit amet iaculis ante facilisis.
-          %li Donec vitae augue volutpat dolor bibendum venenatis sed eget arcu.
-      .grid_4
-        %ul
-          %li Nulla at nisl orci, ac auctor urna.
-          %li Duis fringilla turpis et metus fermentum sit amet iaculis ante facilisis.
-          %li Donec vitae augue volutpat dolor bibendum venenatis sed eget arcu.
-      .grid_4
-        %ul
-          %li Nulla at nisl orci, ac auctor urna.
-          %li Duis fringilla turpis et metus fermentum sit amet iaculis ante facilisis.
-          %li Donec vitae augue volutpat dolor bibendum venenatis sed eget arcu.
+    - unless Sinatra::Base.production?
+      / Hack for mike so he can still use jQuery offline
+      :javascript
+        !window.jQuery && document.write('<script src="js/jquery-1.4.2.min.js"><\/script>')
+    %script{:src => "/javascripts/plugins.js?v=1"}
+    %script{:src => "/javascripts/script.js?v=1"}
+    /[if lt IE 7 ]
+      <script src="js/dd_belatedpng.js?"></script>
+      <script>
+      DD_belatedPNG.fix('img, .png_bg'); //fix any <img> or .png_bg background-images
+      </script>
     
-    :javascript
-      jQuery(function($) {
-        #{ yield_content(:javascript) if content_for? :javascript }  
-      });
-
-
+    - unless Sinatra::Base.production?
+      %script{:src => "/javascripts/profiling/yahoo-profiling.min.js"}
+      %script{:src => "/javascripts/profiling/config.js?v=1"}
