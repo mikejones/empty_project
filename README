@@ -18,7 +18,8 @@ server$ adduser deploy
 server$ EXPORT editor=vi
 server$ visudo
 
-+
++deploy  ALL=(ALL) ALL
++%deploy ALL=NOPASSWD: ALL
 
 3. Create /var/www for sites deployed into:
 
@@ -55,7 +56,7 @@ server$ sudo vim /etc/ssh/sshd_config
 
 Ensure the following settings are present with the correct values, then reload the SSH daemon.
 
-+Port 8000 #(or any high port of your choosing)
++Port 2212 #(or any high port of your choosing)
 +PasswordAuthentication no
 +RSAAuthentication yes
 +PubkeyAuthentication yes
@@ -93,3 +94,18 @@ Passenger
 
 server$ sudo gem in passenger --no-ri --no-rdoc
 server$ sudo passenger-install-nginx-module
+
+
+Mysql
+-----
+
+server$ apt-get install mysql-server
+
+Database in:
+
+/var/lib/mysql
+
+Security Requirements
+----------------------
+
+Ensure a firewall in front
