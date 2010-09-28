@@ -1,3 +1,95 @@
 Build gem
 Install
 Run empty_project project_name
+
+Server Setup
+------------
+
+1. Update, upgrade, install essential
+
+server$ sudo apt-get update
+server$ sudo apt-get upgrade
+server$ sudo apt-get install build-essential -y
+server$ apt-get install libssl-dev zlib1g-dev
+
+Create a deploy user and allow him password-less root access:
+
+server$ adduser deploy
+server$ EXPORT editor=vi
+server$ visudo
+
++
+
+3. Create /var/www for sites deployed into:
+
+server$ mkdir -p /var/www/
+server$ chmod -R deploy:deploy /var/www
+
+Configure SSH
+-------------
+
+1. Create an SSH key
+
+local$ ssh-keygen -t dsa
+
+2. Add your public key to the remote machine
+
+You can do this manually by pasting the contents of you public key into the authorised keys file on the server or you can add the following function to your .bashrc
+
+function authme { 
+ssh $1 'cat >>~/.ssh/authorized_keys' <~/.ssh/id_dsa.pub 
+}
+
+Then run:
+
+local$ authme deploy@[server-name]
+
+Log out of the server and ensure you can login with being challenged for a password:
+
+local$ ssh-add
+local$ ssh deploy@[server]
+
+3. Configure the sshd on the server to turn off password logins and run on a different port.
+
+server$ sudo vim /etc/ssh/sshd_config
+
+Ensure the following settings are present with the correct values, then reload the SSH daemon.
+
++Port 8000 #(or any high port of your choosing)
++PasswordAuthentication no
++RSAAuthentication yes
++PubkeyAuthentication yes
+
+server$ sudo /etc/init.d/sshd reload
+
+4. Configure SSH locally
+
+Add new server ssh config so you can quickly connect
+
+local$ vim ~/.ssh/config
+
++# Comment i use to group servers in the same project
++  Host      [a-name-for-the-server]
++  Hostname  [the ip address]
++  User      deploy
++  Port      [the port number you chose]
+
+Now when you want to connect you just need to run:
+
+local$ ssh a-name-for-the-server
+
+
+Install Ruby Enterprise Edition (REE) and Passenger
+---------------------------------------------
+
+REE
+
+Get url of laest .deb package from http://www.rubyenterpriseedition.com/download.html
+
+server$ wget [latest_version]
+server$ sudo dpkg -i [ree.db]
+
+Passenger
+
+server$ sudo gem in passenger --no-ri --no-rdoc
+server$ sudo passenger-install-nginx-module
