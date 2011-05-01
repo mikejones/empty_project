@@ -15,7 +15,7 @@ server$ apt-get install libssl-dev zlib1g-dev
 Create a deploy user and allow him password-less root access:
 
 server$ adduser deploy
-server$ EXPORT editor=vi
+server$ export EDITOR=vi
 server$ visudo
 
 +deploy  ALL=(ALL) ALL
