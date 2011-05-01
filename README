@@ -24,7 +24,7 @@ server$ visudo
 3. Create /var/www for sites deployed into:
 
 server$ mkdir -p /var/www/
-server$ chmod -R deploy:deploy /var/www
+server$ chown -R deploy:deploy /var/www
 
 Configure SSH
 -------------
